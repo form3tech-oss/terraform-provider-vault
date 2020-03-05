@@ -102,6 +102,7 @@ resource "vault_aws_auth_backend_client" "client" {
   ec2_endpoint = "http://vault.test/ec2"
   iam_endpoint = "http://vault.test/iam"
   sts_endpoint = "http://vault.test/sts"
+  sts_region = "region"
   iam_server_id_header_value = "vault.test"
 }
 `, backend)
@@ -139,6 +140,7 @@ func testAccAWSAuthBackendClientCheck_attrs(backend string) resource.TestCheckFu
 			"ec2_endpoint":               "endpoint",
 			"iam_endpoint":               "iam_endpoint",
 			"sts_endpoint":               "sts_endpoint",
+			"sts_region":                 "sts_region",
 			"iam_server_id_header_value": "iam_server_id_header_value",
 		}
 		for stateAttr, apiAttr := range attrs {
@@ -168,6 +170,7 @@ resource "vault_aws_auth_backend_client" "client" {
   ec2_endpoint = "http://upadted.vault.test/ec2"
   iam_endpoint = "http://updated.vault.test/iam"
   sts_endpoint = "http://updated.vault.test/sts"
+  sts_region = "region"
   iam_server_id_header_value = "updated.vault.test"
 }`, backend)
 }
